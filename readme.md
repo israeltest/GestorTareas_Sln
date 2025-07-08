@@ -14,7 +14,7 @@ Este proyecto consiste en una API RESTful desarrollada en ASP.NET Core 8 y un po
 
 1. Abrir la solución en Visual Studio 2022.
 2. Restaurar paquetes NuGet automáticamente.
-3. Ejecutar el script `GestorTareasDb.sql` en tu instancia de SQL Server.
+3. Ejecutar el script `GestorTareas_Sln/DATABASE/GestorTareasDb.sql` en tu instancia de SQL Server.
 4. Configurar la cadena de conexión en `appsettings.json` en proyecto GestorTareas.API.
     ![alt text](image-1.png)
 5. Configurar en `appsettings.json` en proyecto GestorTareasUI la url de la Api para que eista conexión entre el sitio y la Api.
