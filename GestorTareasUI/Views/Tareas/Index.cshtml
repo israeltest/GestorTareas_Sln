@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GestorTareasUI.Models.Vista.TareaVistaModelo>
+
+<h2>Lista de Tareas</h2>
+
+<p>
+    <a asp-action="Crear" class="btn btn-primary">Nueva Tarea</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Fecha Vencimiento</th>
+            <th>Completada</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.titulo</td>
+                <td>@item.descripcion</td>
+                <td>@item.fechaVencimiento?.ToString("d")</td>
+                <td>@(item.completada ? "Sí" : "No")</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.id" class="btn btn-sm btn-warning">Editar</a>
+                    <form asp-action="Eliminar" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@item.id" />
+                        <button type="submit" class="btn btn-sm btn-danger"
+                                onclick="return confirm('¿Estás seguro de eliminar esta tarea?');">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

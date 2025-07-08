@@ -1,0 +1,21 @@
+﻿@model GestorTareasUI.Models.Vista.InicioSesionVistaModelo
+
+<h2>Iniciar Sesión</h2>
+
+<form asp-action="IniciarSesion" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="NombreUsuario" class="control-label"></label>
+        <input asp-for="NombreUsuario" class="form-control" />
+        <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Contrasena" class="control-label"></label>
+        <input asp-for="Contrasena" type="password" class="form-control" />
+        <span asp-validation-for="Contrasena" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Iniciar Sesión" class="btn btn-primary" />
+        @*  <a asp-action="Registro" class="btn btn-link">Registrarse</a>*@
+    </div> 
+</form>
