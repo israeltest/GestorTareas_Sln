@@ -41,6 +41,9 @@ Este proyecto consiste en una API RESTful desarrollada en ASP.NET Core 8 y un po
      ![alt text](image-10.png) ![alt text](image-11.png)
     Eliminación de la Tarea: 
      ![alt text](image-12.png) ![alt text](image-13.png)
+    Funcionamiento Sitio - Api:
+    ![alt text](Portal-Api.PNG)
+    
     
 
 

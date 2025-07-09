@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 namespace GestorTareas.API.Controllers
 {
+    // Controlador de tareas: maneja las operaciones CRUD para las tareas del usuario actual
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
@@ -20,6 +21,9 @@ namespace GestorTareas.API.Controllers
             _servicioAutenticacion = servicioAutenticacion;
         }
 
+        /// <summary>
+        /// Obtiene todas las tareas asociadas al usuario autenticado.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> ObtenerTodas()
         {
@@ -28,6 +32,10 @@ namespace GestorTareas.API.Controllers
             return Ok(tareas);
         }
 
+        /// <summary>
+        /// Obtiene una tarea específica por su ID, validando que pertenezca al usuario autenticado.
+        /// </summary>
+        /// <param name="id">ID de la tarea</param>
         [HttpGet("{id}")]
         public async Task<IActionResult> ObtenerPorId(int id)
         {
@@ -36,6 +44,10 @@ namespace GestorTareas.API.Controllers
             return Ok(tarea);
         }
 
+        /// <summary>
+        /// Crea una nueva tarea para el usuario autenticado.
+        /// </summary>
+        /// <param name="tareaDto">Datos de la nueva tarea</param>
         [HttpPost]
         public async Task<IActionResult> Crear(CrearTareaDTO tareaDto)
         {
@@ -44,6 +56,10 @@ namespace GestorTareas.API.Controllers
             return CreatedAtAction(nameof(ObtenerPorId), new { id }, null);
         }
 
+        /// <summary>
+        /// Actualiza una tarea existente, asegurando que pertenezca al usuario autenticado.
+        /// </summary>
+        /// <param name="tareaDto">Datos actualizados de la tarea</param>
         [HttpPut]
         public async Task<IActionResult> Actualizar(ActualizarTareaDTO tareaDto)
         {
@@ -52,6 +68,10 @@ namespace GestorTareas.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Elimina una tarea por su ID, asegurando que pertenezca al usuario autenticado.
+        /// </summary>
+        /// <param name="id">ID de la tarea</param>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Eliminar(int id)
         {
@@ -60,6 +80,11 @@ namespace GestorTareas.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Obtiene el ID del usuario autenticado a partir del token JWT.
+        /// </summary>
+        /// <returns>ID del usuario</returns>
+        /// <exception cref="UnauthorizedAccessException">Si el usuario no está autenticado correctamente</exception>
         private int ObtenerIdUsuarioActual()
         {
             var usuarioIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
